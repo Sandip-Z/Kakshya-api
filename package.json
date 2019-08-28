@@ -1,0 +1,18 @@
+{
+  "name": "kakshya",
+  "version": "1.0.0",
+  "description": "RESTAPI for Kakshya",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "restful",
+    "kakshya"
+  ],
+  "author": "Sandip Satyal",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
