@@ -1,14 +1,14 @@
 const express = require('express');
 const app = express();
-// const bodyParser =  require('body-parser');
+const bodyParser =  require('body-parser');
 const signinRoutes = require('./Routes/SigninRoutes');
 const signupRoutes = require('./Routes/signupRoutes');
 
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+var jsonParser = bodyParser.json();
 
-// app.use(bodyParser);
-
-app.use('/signin', signinRoutes);
-app.use('/signup', signupRoutes);
+app.use('/api/signin',jsonParser,signinRoutes);
+app.use('/api/signup',jsonParser,signupRoutes);
 
 app.listen('3001', ()=>{
     console.log('Activated on server 3001')
