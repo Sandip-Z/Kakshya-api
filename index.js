@@ -4,7 +4,6 @@ const bodyParser =  require('body-parser');
 const signinRoutes = require('./Routes/SigninRoutes');
 const signupRoutes = require('./Routes/signupRoutes');
 
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var jsonParser = bodyParser.json();
 
 app.use('/api/signin',jsonParser,signinRoutes);
