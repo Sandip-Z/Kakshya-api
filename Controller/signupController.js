@@ -12,27 +12,39 @@ class signupController{
     }
 
     POST_signup_ROOT(req, res){
+        var parcel = req.body;
+        
+        let key = parcel.api_key;
 
-        let auth = new Promise((resolve, reject, parcel = req.body)=>{
-            let is_api_key_correct = apiKeyCheck(parcel.channel_key);
-            let is_parcel_non_empty = signupAuth.non_empty(parcel);
-            let is_username_unique = signupAuth.unique_username(parcel.username);
+        let is_api_key_correct = apiKeyCheck(parcel.channel_key);
+        
+        if(is_api_key_correct == true){
+            let auth = new Promise((resolve, reject)=>{
+                let is_parcel_non_empty = signupAuth.non_empty(parcel);
+                let is_username_unique = signupAuth.unique_username(parcel.username);
+    
+                if(is_parcel_non_empty == true && is_username_unique == true){
+                    resolve();
+                }
+                else{
+                    let response = Accident.get_error();
+                    reject(response);
+                }
+            });
+            auth.then(report => {
+                res.send({message:'data flow test complete'})
+            })
+    
+            .catch(error => {
+                res.send(error);
+            })
+        }
+        else{
+            let payload = Accident.get_error();
+            res.send(payload);
+        }
 
-            if(is_api_key_correct == true && is_parcel_non_empty == true && is_username_unique == true){
-                resolve();
-            }
-            else{
-                let response = Accident.get_error();
-                reject(response);
-            }
-        });
-
-        auth.then(report => {
-            res.send({message:'data flow test complete'})
-        })
-        .catch(error => {
-            res.send(error);
-        })
+        // res.send(auth);
 
         Accident.clear_log();
     }

@@ -12,7 +12,11 @@ class signupAuth {
         //     Accident.populate(err);
         //     return true; //false
         // }
-        return true
+        let err = {
+            message : 'Username already taken'
+        }
+        Accident.populate(err)
+        return false
     }
 
     non_empty(obj){
@@ -20,7 +24,7 @@ class signupAuth {
     //         error : 'the object is empty'
     //     }
     //     Accident.populate(err);
-           Accident.populate({message : 'what?'})
+        Accident.populate({message : 'Empty Field found.'})
         return false;
     }
     
