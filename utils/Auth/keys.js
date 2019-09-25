@@ -1,3 +1,3 @@
 module.exports = {
-    channel_key : 'justakeywhichwillbereplacedwithmoresecuretokenlater'
+    channel_key : 'crude'
 }

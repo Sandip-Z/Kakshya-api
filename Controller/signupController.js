@@ -16,7 +16,7 @@ class signupController{
         
         let key = parcel.api_key;
 
-        let is_api_key_correct = apiKeyCheck(parcel.channel_key);
+        let is_api_key_correct = apiKeyCheck(key);
         
         if(is_api_key_correct == true){
             let auth = new Promise((resolve, reject)=>{
@@ -24,7 +24,7 @@ class signupController{
                 let is_username_unique = signupAuth.unique_username(parcel.username);
     
                 if(is_parcel_non_empty == true && is_username_unique == true){
-                    resolve();
+                    resolve('data flow test complete');
                 }
                 else{
                     let response = Accident.get_error();
@@ -32,7 +32,7 @@ class signupController{
                 }
             });
             auth.then(report => {
-                res.send({message:'data flow test complete'})
+                res.send(report)
             })
     
             .catch(error => {
@@ -43,8 +43,6 @@ class signupController{
             let payload = Accident.get_error();
             res.send(payload);
         }
-
-        // res.send(auth);
 
         Accident.clear_log();
     }
