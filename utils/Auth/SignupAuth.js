@@ -1,11 +1,11 @@
-var Accident = require('../Error/Accident');
+var accident = require('../Error/accident');
 
 class signupAuth {
     unique_username(username){
         let err = {
             message : 'Username already taken'
         }
-        Accident.populate(err)
+        accident.populate(err)
         return false
     }
 

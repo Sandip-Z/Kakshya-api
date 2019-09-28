@@ -1,6 +1,6 @@
-const signupAuth = require('../utils/Auth/SignupAuth');
+const signupAuth = require('../utils/Auth/signupAuth');
 const apiKeyCheck = require('../utils/Auth/apiKeyCheck');
-var Accident = require('../utils/Error/Accident');
+var accident = require('../utils/Error/accident');
 
 class signupController{
     GET_signup_ROOT(req,res){
@@ -27,7 +27,7 @@ class signupController{
                     resolve('data flow test complete');
                 }
                 else{
-                    let response = Accident.get_error();
+                    let response = accident.get_error();
                     reject(response);
                 }
             });
@@ -40,11 +40,11 @@ class signupController{
             })
         }
         else{
-            let payload = Accident.get_error();
+            let payload = accident.get_error();
             res.send(payload);
         }
 
-        Accident.clear_log();
+        accident.clear_log();
     }
 }
 
