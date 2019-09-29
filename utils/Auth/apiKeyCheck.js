@@ -3,6 +3,7 @@ var Accident = require('../Error/accident');
 
 
 function apiKeyCheck(key){
+    console.log(key);
     if(key === secret.channel_key){
         return true
     }

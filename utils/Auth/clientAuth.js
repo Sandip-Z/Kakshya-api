@@ -1,6 +1,6 @@
 var accident = require('../Error/accident');
 
-class signupAuth {
+class clientAuth {
     unique_username(username){
         let err = {
             message : 'Username already taken'
@@ -15,4 +15,4 @@ class signupAuth {
     
 }
 
-module.exports = new signupAuth();
+module.exports = new clientAuth();

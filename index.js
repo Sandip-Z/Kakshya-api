@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser =  require('body-parser');
-const signinRoutes = require('./Routes/SigninRoutes');
+const signinRoutes = require('./Routes/signinRoutes');
 const signupRoutes = require('./Routes/signupRoutes');
 
 var jsonParser = bodyParser.json();
