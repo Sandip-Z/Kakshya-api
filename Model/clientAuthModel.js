@@ -1,4 +1,5 @@
 const accident = require('../utils/Error/accident');
+const clientAuth = require('../utils/Auth/clientAuth');
 const jwt = require('jsonwebtoken');
 
 class clientAuthModel {
@@ -7,16 +8,16 @@ class clientAuthModel {
     is_user_authentic(user){
         //check required field [email, password]
         //check in database
-        if(typeof user.email == 'undefined'){
-            accident.populate({message : 'user is not authentic'});
-            return false;
-        }
-        else{
-            return true;
-        }
-        
         // user is object.
         // return bool
+        let non_empty_fields = clientAuth.non_empty(user);
+        if(non_empty_fields == true){
+            return true
+        }
+        else{
+            return false
+        }
+
     }
 
     getUserByEmail(email){
