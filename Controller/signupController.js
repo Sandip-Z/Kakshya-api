@@ -13,9 +13,9 @@ class signupController{
 
     POST_signup_ROOT(req, res){
         var parcel = req.body;
-        console.log(parcel);
+        // console.log(parcel);
         let key = parcel.api_key;
-        console.log(key);
+        // console.log(key);
         let is_api_key_correct = apiKeyCheck(key);
         
         if(is_api_key_correct == true){
