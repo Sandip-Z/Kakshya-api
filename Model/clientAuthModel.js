@@ -6,7 +6,7 @@ class clientAuthModel {
 
     
     is_user_authentic(user){
-        //check required field [email, password]
+        //check required field [email, password](done)
         //check in database
         // user is object.
         // return bool
