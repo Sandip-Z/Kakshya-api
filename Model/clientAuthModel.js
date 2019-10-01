@@ -44,6 +44,10 @@ class clientAuthModel {
 
     }
 
+    is_user_unique(email){
+        
+    }
+
 
 }
 
