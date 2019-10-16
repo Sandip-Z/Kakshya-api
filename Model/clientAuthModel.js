@@ -1,6 +1,7 @@
 const accident = require('../utils/Error/accident');
 const clientAuth = require('../utils/Auth/clientAuth');
 const jwt = require('jsonwebtoken');
+const User = require('../Model/userModel');
 
 class clientAuthModel {
 
@@ -22,6 +23,7 @@ class clientAuthModel {
     getUserByEmail(email){
         //email is a string
         //returns object user with username and email
+
         let user = {
             username : 'superuser',
             email : email
@@ -35,7 +37,9 @@ class clientAuthModel {
         //user is object
         //return bool
         let non_empty_fields = clientAuth.non_empty_for_POST(user);
-        if(non_empty_fields == true){
+        let is_username_unique = this.is_username_unique(user.username);
+        let is_email_unique = this.is_email_unique(user.email);
+        if(non_empty_fields == true && is_username_unique == true && is_email_unique == true){
             return true
         }
         else{
@@ -44,10 +48,27 @@ class clientAuthModel {
 
     }
 
-    is_user_unique(email){
-        
+    is_username_unique(username){
+        const result = User.findOne({username}, {created_at : 1});
+        result.then(response => {
+            if(response){
+                //console.log(response);
+                return false;
+            }
+            else{
+                return true;
+            }
+        })   
+        .catch(error => console.log(error));
+        return true;
     }
 
+    is_email_unique(email){
+        // User.findOne({email}, {created_at: 1})
+        // .then(response => console.log(response))
+        // .catch(error => console.log(error));
+        return true;
+    }
 
 }
 

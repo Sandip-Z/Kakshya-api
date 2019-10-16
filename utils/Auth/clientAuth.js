@@ -2,16 +2,17 @@ var accident = require('../Error/accident');
 
 class clientAuth {
     unique_username(username){
-        let err = {
+        let cause = {
             message : 'Username already taken'
         }
-        accident.populate(err)
+        accident.populate(cause);
         return false
+
     }
 
     non_empty(user){
         let error_counter = 0;
-        if(typeof user.email == 'undefined'){
+        if(typeof user.email == 'undefined' ){
             let cause = {
                 message : 'no email field found'
             }
