@@ -3,8 +3,9 @@ const mongoose = require('mongoose');
 const accident = require('../utils/Error/accident');
 
 class UserLogic {
-    createUser(user){
+   async createUser(user){
         //user is an object
+        let created_user;
         let {username, fullname, email, address, password} = user;
         const new_user = new User({
             _id : new mongoose.Types.ObjectId(),
@@ -14,10 +15,10 @@ class UserLogic {
             address : address,
             password : password
         });
-        new_user
+        await new_user
         .save()
         .then(result => {
-            console.log(result);
+            created_user = result
         })
         .catch(err => {
             let cause = {
@@ -25,6 +26,7 @@ class UserLogic {
             }
             accident.populate(cause);
         })
+        return created_user
     }
 
     signin_recently_registerd_user(){

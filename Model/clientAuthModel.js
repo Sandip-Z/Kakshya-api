@@ -20,25 +20,29 @@ class clientAuthModel {
 
     }
 
-    getUserByEmail(email){
+    async getUserByEmail(email){
         //email is a string
         //returns object user with username and email
-
-        let user = {
-            username : 'superuser',
-            email : email
-        } 
+        let user;
+        await User.findOne({email}, {email:1, username:1})
+        .then(response => user = response)
+        .catch(err => console.log(err));
+        // console.log('getUserbyEmail' + user);
+        // let user = {
+        //     username : 'superuser',
+        //     email : email
+        // } 
         return user;
     }
 
-    can_user_be_created(user){
+    async can_user_be_created(user){
         //check required fields
         //check duplication in database
         //user is object
         //return bool
         let non_empty_fields = clientAuth.non_empty_for_POST(user);
-        let is_username_unique = this.is_username_unique(user.username);
-        let is_email_unique = this.is_email_unique(user.email);
+        let is_username_unique = await this.is_username_unique(user.username);
+        let is_email_unique = await this.is_email_unique(user.email);
         if(non_empty_fields == true && is_username_unique == true && is_email_unique == true){
             return true
         }
@@ -48,26 +52,42 @@ class clientAuthModel {
 
     }
 
-    is_username_unique(username){
-        const result = User.findOne({username}, {created_at : 1});
-        result.then(response => {
-            if(response){
-                //console.log(response);
-                return false;
-            }
-            else{
-                return true;
-            }
+    async is_username_unique(username){
+        var boolean;
+        await User.findOne({username}, {created_at : 1})
+        .then(response => {
+            boolean = response;
         })   
         .catch(error => console.log(error));
-        return true;
+        if(boolean){
+            let cause = {
+                message : 'Username already exists'
+            }
+            accident.populate(cause);
+            return false
+        }
+        else{           
+            return true
+        }
     }
 
-    is_email_unique(email){
-        // User.findOne({email}, {created_at: 1})
-        // .then(response => console.log(response))
-        // .catch(error => console.log(error));
-        return true;
+    async is_email_unique(email){
+        var boolean;
+        await User.findOne({email}, {created_at: 1})
+        .then(response => {
+            boolean = response;
+        })
+        .catch(error => console.log(error));
+        if(boolean){
+            let cause = {
+                message : 'email already exist'
+            }
+            accident.populate(cause);
+            return false
+        }
+        else{
+            return true
+        }
     }
 
 }

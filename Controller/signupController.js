@@ -11,16 +11,24 @@ class signupController{
         res.send(payload);
     }
 
-    POST_signup_ROOT(req, res){
+    async POST_signup_ROOT(req, res){
         var parcel = req.body;
-        if(clientAuthModel.can_user_be_created(parcel) == true){
+        var can_user_be_created = await clientAuthModel.can_user_be_created(parcel);
+        if(can_user_be_created == true){
             // res.send('working on it, man');
-            let created_user = userLogic.createUser(parcel);
-            let message = "heel";
-            console.log(created_user);
-            res.send(message);
+            console.log('i am here');
+            let created_user = await userLogic.createUser(parcel);
+            console.log('created user is ' +created_user);
+            let payload = {
+                id : created_user._id,
+                username : created_user.username,
+                email: created_user.password,
+                created_at : created_user.created_at
+            }
+            res.send(payload);
         }
         else{
+            console.log('hello man')
             let cause = accident.get_error();
             res.send(cause);
             accident.clear_log();
