@@ -4,7 +4,6 @@ const accident = require('../utils/Error/accident');
 
 class UserLogic {
    async createUser(user){
-        //user is an object
         let created_user;
         let {username, fullname, email, address, password} = user;
         const new_user = new User({
