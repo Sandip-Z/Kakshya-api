@@ -1,4 +1,3 @@
-const clientAuth = require('../utils/Auth/clientAuth');
 const clientAuthModel = require('../Model/clientAuthModel');
 const accident = require('../utils/Error/accident');
 const jwt = require('jsonwebtoken');
@@ -12,11 +11,12 @@ class signinController{
         res.send(payload);
     }
 
-    POST_signin_ROOT(req,res){
+    async POST_signin_ROOT(req,res){
 
     let parcel = req.body;
     let userEmail = parcel.email;
-    if(clientAuthModel.is_user_authentic(parcel) === true){
+    let is_user_authentic = await clientAuthModel.is_user_authentic(parcel);
+    if(is_user_authentic === true){
         let user = clientAuthModel.getUserByEmail(userEmail);
         jwt.sign({user}, 'tyodinbymcflo', (err, token)=>{
             if(err){
@@ -30,6 +30,7 @@ class signinController{
         })
     }
     else{
+        console.log('I am at controllers else block')
         let cause = accident.get_error();
         res.send(cause);
         accident.clear_log();
