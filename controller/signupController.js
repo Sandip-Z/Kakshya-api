@@ -16,17 +16,26 @@ class signupController{
         var can_user_be_created = await clientAuthModel.can_user_be_created(parcel);
         if(can_user_be_created == true){
             let created_user = await userLogic.createUser(parcel);
-            let payload = {
+            let data = {
                 id : created_user._id,
                 username : created_user.username,
                 email: created_user.email,
                 created_at : created_user.created_at
             }
+            let payload = {
+                status : 'success',
+                message : 'Successfully created a user',
+                data
+            }
             res.send(payload);
         }
         else{
             let cause = accident.get_error();
-            res.send(cause);
+            let payload = {
+                status : 'failed',
+                error : cause
+            }
+            res.send(payload);
             accident.clear_log();
         }
     }

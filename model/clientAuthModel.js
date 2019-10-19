@@ -48,17 +48,17 @@ class clientAuthModel {
         }
         else if(!response){
             let cause = {
-                message : 'Either email or password error'
+                message : 'Either email or password is incorrect'
             }
             accident.populate(cause);
             return false
         }
         else{
             let cause = {
-                message : 'Either password or email is incorrect'
+                message : 'Either email or password is incorrect'
             }
             accident.populate(cause);
-            console.log('hello from false block');
+            // console.log('hello from false block');
             return false
         }
     }
