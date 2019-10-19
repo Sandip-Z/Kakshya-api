@@ -1,6 +1,6 @@
-const clientAuthModel = require('../Model/clientAuthModel');
-var accident = require('../utils/Error/accident');
-var userLogic = require('../Model/userLogic');
+const clientAuthModel = require('../model/clientAuthModel');
+var accident = require('../utils/error/accident');
+var userLogic = require('../model/userLogic');
 
 class signupController{
     GET_signup_ROOT(req,res){

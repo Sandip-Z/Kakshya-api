@@ -1,4 +1,4 @@
-var accident = require('../Error/accident');
+var accident = require('../error/accident');
 
 class clientAuth {
     unique_username(username){

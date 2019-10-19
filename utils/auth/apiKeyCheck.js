@@ -1,5 +1,5 @@
 const secret = require('./keys.js');
-var Accident = require('../Error/accident');
+var Accident = require('../error/accident');
 
 
 function apiKeyCheck(key){
