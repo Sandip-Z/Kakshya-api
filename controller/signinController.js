@@ -1,5 +1,5 @@
-const clientAuthModel = require('../Model/clientAuthModel');
-const accident = require('../utils/Error/accident');
+const clientAuthModel = require('../model/clientAuthModel');
+const accident = require('../utils/error/accident');
 const jwt = require('jsonwebtoken');
 
 class signinController{

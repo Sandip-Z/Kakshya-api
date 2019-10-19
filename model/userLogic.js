@@ -1,6 +1,6 @@
-const User = require('../Model/userModel');
+const User = require('../model/userModel');
 const mongoose = require('mongoose');
-const accident = require('../utils/Error/accident');
+const accident = require('../utils/error/accident');
 
 class UserLogic {
    async createUser(user){

@@ -2,8 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const bodyParser =  require('body-parser');
-const signinRoutes = require('./Routes/signinRoutes');
-const signupRoutes = require('./Routes/signupRoutes');
+const signinRoutes = require('./routes/signinRoutes');
+const signupRoutes = require('./routes/signupRoutes');
 
 var jsonParser = bodyParser.json();
 

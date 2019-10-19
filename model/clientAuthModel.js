@@ -1,6 +1,6 @@
-const accident = require('../utils/Error/accident');
-const clientAuth = require('../utils/Auth/clientAuth');
-const User = require('../Model/userModel');
+const accident = require('../utils/error/accident');
+const clientAuth = require('../utils/auth/clientAuth');
+const User = require('../model/userModel');
 
 class clientAuthModel {
 
