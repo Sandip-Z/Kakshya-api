@@ -12,7 +12,7 @@ class Accident{
 
     populate(obj){
         this.err.push(obj);
-    }j
+    }
 
     get_error(){
         return this.err;
