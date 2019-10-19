@@ -19,7 +19,7 @@ class signupController{
             let payload = {
                 id : created_user._id,
                 username : created_user.username,
-                email: created_user.password,
+                email: created_user.email,
                 created_at : created_user.created_at
             }
             res.send(payload);
