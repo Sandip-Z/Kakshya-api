@@ -6,6 +6,7 @@ const bodyParser =  require('body-parser');
 const signinRoutes = require('./routes/signinRoutes');
 const signupRoutes = require('./routes/signupRoutes');
 const userRoutes = require('./routes/userRoutes');
+const classRoutes = require('./routes/classRoutes');
 const swaggerSetup = require('./setups/swagger')
 
 var jsonParser = bodyParser.json();
@@ -26,7 +27,8 @@ app.use(cors())
 app.use('/api/signin',jsonParser,signinRoutes);
 app.use('/api/signup',jsonParser,signupRoutes);
 app.use('/api/me',jsonParser,userRoutes);
+app.use('/api/class',jsonParser,classRoutes);
 
-app.listen('3002', ()=>{
-    console.log('Activated on server 3002')
+app.listen('3001', ()=>{
+    console.log('Activated on server 3001')
 });

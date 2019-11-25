@@ -9,8 +9,9 @@ const userSchema = new Schema({
     email : {type:String, required:true},
     password : {type:String, required:true},
     address : {type: String, required:false},
-    created_at : {type:Date, default:Date.now}
-    // profile_picture: File,
+    created_at : {type:Date, default:Date.now},
+    created_classes: [{ type: Schema.Types.ObjectId, ref: 'created_classes' }],
+    joined_classes: [{ type: Schema.Types.ObjectId, ref: 'joined_classes' }],
 });
 
 const User = mongoose.model('user', userSchema);
