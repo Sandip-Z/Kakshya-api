@@ -57,13 +57,6 @@ class clientAuth {
       //required fields : username, email, password, address, fullname.
       let {username, email, password, address, fullname} = user;
       let err_counter = 0;
-      if(typeof username == 'undefined'){
-          let cause = {
-              message : 'username field is required'
-          }
-          accident.populate(cause);
-          err_counter +=1;
-      }
       
       if(typeof email == 'undefined'){
           let cause = {
@@ -76,14 +69,6 @@ class clientAuth {
       if(typeof password == 'undefined'){
           let cause = {
               message : 'password field is required'
-          }
-          accident.populate(cause);
-          err_counter +=1;
-      }
-
-      if(typeof address == 'undefined'){
-          let cause = {
-              message : 'address field is required'
           }
           accident.populate(cause);
           err_counter +=1;
@@ -108,22 +93,6 @@ class clientAuth {
       if(password == ''){
           let cause = {
               message : 'password field is empty'
-          }
-          accident.populate(cause);
-          err_counter += 1;
-      }
-
-      if(username == ''){
-          let cause = {
-              message : 'username field is empty'
-          }
-          accident.populate(cause);
-          err_counter += 1;
-      }
-
-      if(address == ''){
-          let cause = {
-              message : 'adress field is empty'
           }
           accident.populate(cause);
           err_counter += 1;
