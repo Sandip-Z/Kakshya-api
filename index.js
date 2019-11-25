@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+var cors = require('cors')
+app.use(cors())
 const bodyParser =  require('body-parser');
 const signinRoutes = require('./routes/signinRoutes');
 const signupRoutes = require('./routes/signupRoutes');
