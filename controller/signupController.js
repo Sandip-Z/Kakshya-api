@@ -8,6 +8,7 @@ class signupController{
             error: "Only POST request exist for this endpoint.",
             documentation : "/api/docs"
         }
+        res.status(400);
         res.send(payload);
     }
 
@@ -26,6 +27,7 @@ class signupController{
         }
         else{
             let cause = accident.get_error();
+            res.status(400);
             res.send(cause);
             accident.clear_log();
         }
