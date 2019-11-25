@@ -18,7 +18,7 @@ class signinController{
         let is_user_authentic = await clientAuthModel.is_user_authentic(parcel);
         if(is_user_authentic === true){
             let user = clientAuthModel.getUserByEmail(userEmail);
-            jwt.sign({user}, 'tyodinbymcflo', (err, token)=>{
+            jwt.sign({email: userEmail}, 'kakshyaJWT', (err, token)=>{
                 if(err){
                     res.json({
                         status : '403'
