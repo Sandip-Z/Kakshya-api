@@ -33,6 +33,25 @@ class classController{
             res.send({message: 'Bad Request'})
         })
     }
+    async PATCH_class_ROOT(req,res){
+      let classId = req.params.id;
+      var parcel = req.body;
+      console.log(classId)
+      console.log(parcel)
+      await User.findOne({ _id: parcel.joined_by }, (err, user) => {
+        user
+        .joined_classes
+        .push(parcel.joined_by)
+        user.save()
+      })      
+      await Class.findOne({ _id: classId }, (err, classInstance) => {
+        classInstance
+        .joined_by
+        .push(parcel.joined_by)
+        classInstance.save()
+      })
+      res.send('success')
+    }
     async GET_class_ROOT(req,res){
         Class.find({})
           .then(response => {

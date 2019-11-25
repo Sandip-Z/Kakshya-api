@@ -82,9 +82,9 @@ class clientAuthModel {
 
     async can_user_be_created(user){
         let non_empty_fields = clientAuth.non_empty_for_POST(user);
-        let is_username_unique = await this.is_username_unique(user.username);
+        // let is_username_unique = await this.is_username_unique(user.username);
         let is_email_unique = await this.is_email_unique(user.email);
-        if(non_empty_fields == true && is_username_unique == true && is_email_unique == true){
+        if(non_empty_fields == true && is_email_unique == true){
             return true
         }
         else{
