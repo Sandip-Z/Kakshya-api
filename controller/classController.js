@@ -28,7 +28,6 @@ class classController{
           res.send(payload);            
         })
         .catch(err => {
-            console.log(err)
             res.status(400)
             res.send({message: 'Bad Request'})
         })
@@ -36,8 +35,6 @@ class classController{
     async PATCH_class_ROOT(req,res){
       let classId = req.params.id;
       var parcel = req.body;
-      console.log(classId)
-      console.log(parcel)
       await User.findOne({ _id: parcel.joined_by }, (err, user) => {
         user
         .joined_classes
@@ -51,6 +48,27 @@ class classController{
         classInstance.save()
       })
       res.send('success')
+    }
+    async GET_class_DETAIL(req,res){
+      let classId = req.params.id;
+      let created_by = []
+      let classRoom = await Class.findOne({ _id: classId })
+      await User.find({created_classes: classId}).sort({"created_at": -1}).limit(10)
+      .then(response => {
+        created_by = response
+      })
+      let joined_by = []
+      for (let user of classRoom.joined_by) {
+        await User.findOne({ _id: user })
+          .then((response) => {
+            console.log(response.fullname)
+            joined_by.push(response)
+          })
+      }
+      let response = {
+        classRoom, created_by, joined_by
+      }
+      res.send(response)
     }
     async GET_class_ROOT(req,res){
         Class.find({})
