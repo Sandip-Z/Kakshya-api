@@ -10,7 +10,7 @@ class userController{
             if (!user) {
                 throw new Error()
             }
-            res.send(user)
+            res.send({user: user})
         } catch (error) {
             res.status(401).send({ error: 'Not authorized to access this resource' })
         }

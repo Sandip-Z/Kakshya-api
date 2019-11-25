@@ -27,6 +27,6 @@ app.use('/api/signin',jsonParser,signinRoutes);
 app.use('/api/signup',jsonParser,signupRoutes);
 app.use('/api/me',jsonParser,userRoutes);
 
-app.listen('3001', ()=>{
-    console.log('Activated on server 3001')
+app.listen('3002', ()=>{
+    console.log('Activated on server 3002')
 });
